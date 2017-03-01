@@ -1,6 +1,13 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Validate environment
+# ['vagrant-reload', 'vagrant-vbguest'].each do |plugin|
+#   unless Vagrant.has_plugin?(plugin)
+#     raise "Vagrant plugin #{plugin} is not installed!"
+#   end
+# end
+
 # Vagrant guest config #
 if !File.exist?('./config.rb')
     FileUtils.cp('./config-sample.rb', './config.rb')
@@ -13,7 +20,7 @@ require CONFIG
 # End Vagrant guest config #
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "packer/centos-7.1/centos-7-1-x64-virtualbox.box"
   config.vm.network "private_network", type: "dhcp"
 
   $ansible_groups = { "vagrant" => [ ] }
@@ -69,6 +76,14 @@ $boxes.each_with_index do |box, index|
       box[:forwarded_ports].each do |guest_port, host_port|
         node.vm.network "forwarded_port", guest: guest_port, host: host_port, auto_correct: true
       end if box[:forwarded_ports]
+
+      # if Dir.glob("/lib/modules/4.5.0-040500rc6-generic").empty?
+      #   config.vm.provision :shell, :privileged => true, :path => "scripts/install-kernel-4.5.sh"
+      #   config.vm.provision :reload
+      # end
+      #
+      # config.vm.provision :shell, :privileged => false, :path => "scripts/install-bcc.sh"
+
     end
   end
 end
