@@ -20,7 +20,7 @@ require CONFIG
 # End Vagrant guest config #
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "packer/centos-7.1/centos-7-1-x64-virtualbox.box"
+  config.vm.box = "kaorimatz/ubuntu-16.10-amd64"
   config.vm.network "private_network", type: "dhcp"
 
   $ansible_groups = { "vagrant" => [ ] }

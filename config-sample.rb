@@ -3,8 +3,8 @@ $boxes = [
   {
     :cluster_size => 1,
     :ram => "2048",
-    :os =>  "centos",
-    :os_version => "7",
+    :os =>  "ubuntu",
+    :os_version => "16.10",
     :ansible =>
       [{ :group => "node", :roles => [ "*" ]}],
     :forwarded_ports =>
