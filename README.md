@@ -3,3 +3,4 @@ Performance Sandbox
 
 ## Included Tools
 - DTrace
+- LPE
