@@ -1,7 +1,8 @@
-# Config 1 - Single VM, Generic Cluster,  Ubuntu 14.04
+# Config 1 - Single VM, Generic Cluster,  Ubuntu 16.10
 $boxes = [
   {
     :cluster_size => 1,
+    :box => "kaorimatz/ubuntu-16.10-amd64",
     :ram => "2048",
     :os =>  "ubuntu",
     :os_version => "16.10",
